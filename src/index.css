@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@import '@blinkdotnew/ui/styles';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PALETTE — Smart Home Dark · Teal-Navy · Gold
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* Core */
+  --background: 218 40% 7%;
+  --foreground: 195 30% 90%;
+  --card: 218 35% 10%;
+  --card-foreground: 195 25% 88%;
+  --popover: 218 35% 10%;
+  --popover-foreground: 195 25% 88%;
+
+  /* Primary = teal */
+  --primary: 174 100% 45%;
+  --primary-foreground: 218 40% 6%;
+
+  /* Secondary = muted navy */
+  --secondary: 218 30% 14%;
+  --secondary-foreground: 195 20% 65%;
+
+  --muted: 218 28% 12%;
+  --muted-foreground: 218 15% 50%;
+
+  /* Accent = gold */
+  --accent: 45 95% 54%;
+  --accent-foreground: 218 40% 6%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 218 20% 16%;
+  --input: 218 20% 16%;
+  --ring: 174 100% 45%;
+
+  --chart-1: 174 100% 45%;
+  --chart-2: 45 95% 54%;
+  --chart-3: 280 60% 65%;
+  --chart-4: 220 80% 65%;
+  --chart-5: 0 70% 60%;
+
+  --sidebar: 218 35% 9%;
+  --sidebar-foreground: 195 25% 88%;
+  --sidebar-primary: 174 100% 45%;
+  --sidebar-primary-foreground: 218 40% 6%;
+  --sidebar-accent: 218 28% 14%;
+  --sidebar-accent-foreground: 195 25% 80%;
+  --sidebar-border: 218 20% 16%;
+  --sidebar-ring: 174 100% 45%;
+
+  /* Custom brand tokens */
+  --teal: #00e5cc;
+  --teal-dim: rgba(0, 229, 204, 0.15);
+  --teal-glow: rgba(0, 229, 204, 0.25);
+  --teal-border: rgba(0, 229, 204, 0.2);
+  --gold: #f5c518;
+  --gold-dim: rgba(245, 197, 24, 0.15);
+  --navy: #0a0f1a;
+  --navy-card: rgba(12, 18, 32, 0.7);
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radius */
+  --radius: 0.75rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-teal: 0 0 24px rgba(0, 229, 204, 0.2);
+  --shadow-teal-lg: 0 0 60px rgba(0, 229, 204, 0.25);
+  --shadow-gold: 0 0 24px rgba(245, 197, 24, 0.2);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.55;
+  --line-height-relaxed: 1.7;
+  --line-height-heading: 1.15;
+
+  /* Shadow aliases for blink-ui */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+  --shadow-xl: 0 12px 48px rgba(0,0,0,0.5);
+  --shadow-2xl: 0 24px 64px rgba(0,0,0,0.6);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+
+  --tracking-normal: -0.01em;
+  --spacing: 0.25rem;
+}
+
+/* ── Dark always ON ──────────────────────────────────────── */
+:root.dark,
+.theme-midnight.dark,
+.theme-linear.dark,
+.theme-glass.dark,
+.theme-minimal.dark {
+  --background: 218 40% 7%;
+  --foreground: 195 30% 90%;
+  --primary: 174 100% 45%;
+  --primary-foreground: 218 40% 6%;
+  --accent: 45 95% 54%;
+  --accent-foreground: 218 40% 6%;
+  --border: 218 20% 16%;
+  --ring: 174 100% 45%;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════ */
+.font-heading { font-family: 'Syne', sans-serif; }
+
+/* ═══════════════════════════════════════════════════════════
+   HEX GRID BACKGROUND
+   ═══════════════════════════════════════════════════════════ */
+.hex-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V18L28 2l28 16v32L28 66zm0-6l22-13V23L28 8 6 23v24l22 13z' fill='none' stroke='%2300e5cc' stroke-width='0.5' stroke-opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 56px 100px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLASS CARDS — iOS 26 + Smart Home aesthetic
+   ═══════════════════════════════════════════════════════════ */
+.glass {
+  background: rgba(12, 18, 32, 0.65);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  border: 1px solid var(--teal-border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.glass-teal {
+  background: rgba(0, 229, 204, 0.06);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(0, 229, 204, 0.2);
+  box-shadow: 0 0 0 1px rgba(0,229,204,0.05), 0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.glass-gold {
+  background: rgba(245, 197, 24, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(245, 197, 24, 0.2);
+  box-shadow: 0 0 20px rgba(245,197,24,0.1), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Inner shine top edge */
+.glass-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEAL GLOW UTILITIES
+   ═══════════════════════════════════════════════════════════ */
+.glow-teal { box-shadow: 0 0 20px rgba(0, 229, 204, 0.25); }
+.glow-teal-lg { box-shadow: 0 0 60px rgba(0, 229, 204, 0.3), 0 0 120px rgba(0, 229, 204, 0.1); }
+.glow-gold { box-shadow: 0 0 20px rgba(245, 197, 24, 0.25); }
+.text-teal { color: var(--teal); }
+.text-gold { color: var(--gold); }
+.border-teal { border-color: var(--teal-border); }
+
+/* ═══════════════════════════════════════════════════════════
+   GOLD SHIMMER TEXT
+   ═══════════════════════════════════════════════════════════ */
+.gold-shimmer {
+  background: linear-gradient(90deg, #f5c518 0%, #ffd95a 30%, #f5c518 60%, #ffd95a 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.teal-shimmer {
+  background: linear-gradient(90deg, #00e5cc 0%, #7ffff4 40%, #00e5cc 70%, #7ffff4 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION DIVIDER
+   ═══════════════════════════════════════════════════════════ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 204, 0.3), transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 229, 204, 0.5); }
+  50%      { opacity: 0.85; transform: scale(1.05); box-shadow: 0 0 0 6px rgba(0, 229, 204, 0); }
+}
+
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes spinSlowReverse { to { transform: rotate(-360deg); } }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(30px, -20px) scale(1.05); }
+  66%      { transform: translate(-20px, 15px) scale(0.95); }
+}
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.02); }
+}
+
+.spin-slow         { animation: spinSlow 14s linear infinite; }
+.spin-slow-reverse { animation: spinSlowReverse 20s linear infinite; }
+.float-y           { animation: floatY 5s ease-in-out infinite; }
+.bounce-arrow      { animation: bounce-arrow 1.4s ease-in-out infinite; }
+.pulse-green       { animation: pulseGreen 2s ease-in-out infinite; }
+.orb-drift         { animation: orb-drift 12s ease-in-out infinite; }
+
+/* ═══════════════════════════════════════════════════════════
+   INTERACTIVE HOVER LIFT
+   ═══════════════════════════════════════════════════════════ */
+.hover-lift {
+  transition: transform 0.25s var(--easing-default),
+              box-shadow 0.25s var(--easing-default),
+              border-color 0.25s;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px rgba(0, 229, 204, 0.2), 0 8px 32px rgba(0,0,0,0.5);
+  border-color: rgba(0, 229, 204, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
