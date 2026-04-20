@@ -3,16 +3,9 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import SectionLabel from './SectionLabel'
 import { Layers, BrainCircuit, BarChart2, Shield, TrendingUp } from 'lucide-react'
+import { useLanguage } from '../hooks/useLanguage'
 
-const PILLARS = [
-  { icon:TrendingUp,  title:'Trading Execution',  color:'#00e5cc', desc:'Institutional-grade execution engine for retail and professional traders worldwide.' },
-  { icon:BarChart2,   title:'Advanced Analytics',  color:'#f5c518', desc:'TradingView-level charting and market structure analysis powered by real-time data.' },
-  { icon:BrainCircuit,title:'AI-Driven Insights',  color:'#a78bfa', desc:'Machine learning models that identify high-probability setups and market patterns.' },
-  { icon:Layers,      title:'Asset Management',    color:'#34d399', desc:'BlackRock-inspired systematic portfolio management for individual and institutional investors.' },
-  { icon:Shield,      title:'Halal Compliance',    color:'#fb923c', desc:'Fully Shariah-compliant structure ensuring ethical investing for 1.8 billion Muslims globally.' },
-]
-
-function PCard({ p, i }: { p: typeof PILLARS[0]; i: number }) {
+function PCard({ p, i }: { p: any; i: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0); const y = useMotionValue(0)
   const rx = useSpring(useTransform(y,[-50,50],[8,-8]),{stiffness:380,damping:34})
@@ -50,7 +43,17 @@ function PCard({ p, i }: { p: typeof PILLARS[0]; i: number }) {
 }
 
 export default function Vision() {
+  const { t } = useLanguage()
   const { ref, inView } = useInView()
+
+  const pillars = [
+    { icon:TrendingUp,  title: t('vision.pillars.p1'),  color:'#00e5cc', desc: t('vision.pillars.p1d') },
+    { icon:BarChart2,   title: t('vision.pillars.p2'),  color:'#f5c518', desc: t('vision.pillars.p2d') },
+    { icon:BrainCircuit,title: t('vision.pillars.p3'),  color:'#a78bfa', desc: t('vision.pillars.p3d') },
+    { icon:Layers,      title: t('vision.pillars.p4'),  color:'#34d399', desc: t('vision.pillars.p4d') },
+    { icon:Shield,      title: t('vision.pillars.p5'),  color:'#fb923c', desc: t('vision.pillars.p5d') },
+  ]
+
   return (
     <section id="vision" ref={ref} className="py-24 relative overflow-hidden hex-bg"
       style={{ background:'linear-gradient(180deg, #06101a 0%, #070f1c 100%)' }}>
@@ -60,8 +63,8 @@ export default function Vision() {
 
       <div className="relative max-w-7xl mx-auto px-6 z-10">
         <motion.div initial={{ opacity:0, y:36 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.7 }}>
-          <SectionLabel label="Future Company" title="SafiqX — The Vision"
-            subtitle="A next-generation halal brokerage and investment platform built to compete with the world's top financial institutions." />
+          <SectionLabel label={t('vision.label')} title={t('vision.title')}
+            subtitle={t('vision.subtitle')} />
         </motion.div>
 
         {/* Central glass quote */}
@@ -78,25 +81,25 @@ export default function Vision() {
               style={{ background:'linear-gradient(90deg, transparent, rgba(0,229,204,0.55), transparent)' }} />
             <p className="relative text-xl sm:text-2xl italic font-medium leading-relaxed mb-5 font-heading"
               style={{ color:'rgba(0,229,204,0.85)' }}>
-              "SafiqX is not just a fintech company. It is a movement — to give every Muslim and ethical investor access to world-class financial infrastructure."
+              {t('vision.quote')}
             </p>
             <div className="relative flex items-center justify-center gap-3">
               <div className="h-px w-10" style={{ background:'rgba(0,229,204,0.35)' }}/>
-              <span className="text-xs font-semibold tracking-widest uppercase font-heading" style={{ color:'rgba(0,229,204,0.7)' }}>SafiqX Mission</span>
+              <span className="text-xs font-semibold tracking-widest uppercase font-heading" style={{ color:'rgba(0,229,204,0.7)' }}>{t('vision.mission')}</span>
               <div className="h-px w-10" style={{ background:'rgba(0,229,204,0.35)' }}/>
             </div>
           </div>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {PILLARS.map((p,i) => <PCard key={p.title} p={p} i={i}/>)}
+          {pillars.map((p,i) => <PCard key={p.title} p={p} i={i}/>)}
         </div>
 
         <motion.div initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ delay:0.9 }}
           className="text-center mt-10">
           <span className="inline-block text-xs font-bold tracking-widest uppercase px-6 py-2 rounded-full font-heading"
             style={{ background:'rgba(0,229,204,0.07)', border:'1px solid rgba(0,229,204,0.2)', color:'#00e5cc' }}>
-            Goal: Global leader in ethical finance
+            {t('vision.goal')}
           </span>
         </motion.div>
       </div>

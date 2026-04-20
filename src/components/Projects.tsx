@@ -3,29 +3,9 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import SectionLabel from './SectionLabel'
 import { Building2, BarChart3, Globe, ArrowUpRight } from 'lucide-react'
+import { useLanguage } from '../hooks/useLanguage'
 
-const PROJECTS = [
-  {
-    icon: Building2, tag: 'Startup Concept', tagColor: '#00e5cc',
-    title: 'SafiqX', subtitle: 'Brokerage & Investment Company', status: 'In Development',
-    description: 'A next-generation halal brokerage platform combining trading execution, advanced analytics (like TradingView), and AI-driven insights. Inspired by BlackRock-level infrastructure.',
-    highlights: ['Trading execution engine','AI-based market insights','Asset management system','Halal-compliant structure'],
-  },
-  {
-    icon: BarChart3, tag: 'Personal Strategy', tagColor: '#f5c518',
-    title: 'Trading System', subtitle: 'Bank Manipulation Strategy', status: 'Active Research',
-    description: 'A personal trading strategy built on Smart Money Concepts — identifying bank order flow, key liquidity zones, and structure shifts across multiple timeframes.',
-    highlights: ['Smart Money Concepts (SMC)','Multi-timeframe model (D1→M15)','Liquidity sweep identification','Risk-managed structure'],
-  },
-  {
-    icon: Globe, tag: 'Personal Brand', tagColor: '#a78bfa',
-    title: 'Digital Identity', subtitle: 'Portfolio & Personal Brand', status: 'Active',
-    description: 'Building a high-converting digital identity designed to attract university admissions, investors, and strategic partners. Every touchpoint communicates vision and ambition.',
-    highlights: ['Investor-grade presentation','University portfolio targeting','Strategic personal narrative','Global visibility system'],
-  },
-]
-
-function Card3D({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
+function Card3D({ p, i }: { p: any; i: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0); const y = useMotionValue(0)
   const rx = useSpring(useTransform(y, [-80,80],[10,-10]),{stiffness:280,damping:30})
@@ -83,7 +63,7 @@ function Card3D({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
 
           <div className="rounded-xl p-3.5 space-y-2"
             style={{ background:'rgba(5,9,18,0.55)', border:`1px solid ${p.tagColor}12` }}>
-            {p.highlights.map((h,hi) => (
+            {p.highlights.map((h: string, hi: number) => (
               <motion.div key={h} className="flex items-center gap-2"
                 initial={{ opacity:0, x:-6 }} whileInView={{ opacity:1, x:0 }}
                 viewport={{ once:true }} transition={{ delay:0.5+i*0.1+hi*0.05 }}>
@@ -99,7 +79,30 @@ function Card3D({ p, i }: { p: typeof PROJECTS[0]; i: number }) {
 }
 
 export default function Projects() {
+  const { t } = useLanguage()
   const { ref, inView } = useInView()
+
+  const projects = [
+    {
+      icon: Building2, tag: t('projects.safiqx.tag'), tagColor: '#00e5cc',
+      title: t('projects.safiqx.title'), subtitle: t('projects.safiqx.sub'), status: t('projects.status.dev'),
+      description: t('projects.safiqx.desc'),
+      highlights: [t('projects.safiqx.h1'), t('projects.safiqx.h2'), t('projects.safiqx.h3'), t('projects.safiqx.h4')],
+    },
+    {
+      icon: BarChart3, tag: t('projects.trading.tag'), tagColor: '#f5c518',
+      title: t('projects.trading.title'), subtitle: t('projects.trading.sub'), status: t('projects.status.research'),
+      description: t('projects.trading.desc'),
+      highlights: [t('projects.trading.h1'), t('projects.trading.h2'), t('projects.trading.h3'), t('projects.trading.h4')],
+    },
+    {
+      icon: Globe, tag: t('projects.identity.tag'), tagColor: '#a78bfa',
+      title: t('projects.identity.title'), subtitle: t('projects.identity.sub'), status: t('projects.status.active'),
+      description: t('projects.identity.desc'),
+      highlights: [t('projects.identity.h1'), t('projects.identity.h2'), t('projects.identity.h3'), t('projects.identity.h4')],
+    },
+  ]
+
   return (
     <section id="projects" ref={ref} className="py-24 relative overflow-hidden"
       style={{ background:'linear-gradient(180deg, #07111d 0%, #06101a 100%)' }}>
@@ -110,11 +113,11 @@ export default function Projects() {
 
       <div className="relative max-w-7xl mx-auto px-6 z-10">
         <motion.div initial={{ opacity:0, y:36 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.7 }}>
-          <SectionLabel label="Projects" title="What I'm Building" subtitle="Real ventures in development — not school projects." />
+          <SectionLabel label={t('projects.label')} title={t('projects.title')} subtitle={t('projects.subtitle')} />
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          {PROJECTS.map((p,i) => <Card3D key={p.title} p={p} i={i}/>)}
+          {projects.map((p,i) => <Card3D key={p.title} p={p} i={i}/>)}
         </div>
       </div>
     </section>

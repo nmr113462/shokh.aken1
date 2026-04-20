@@ -2,54 +2,57 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import SectionLabel from './SectionLabel'
 import { CheckCircle2, Circle, Clock } from 'lucide-react'
-
-const PHASES = [
-  {
-    phase: 'Phase I', timeline: '2026 — Short-Term', color: '#00e5cc',
-    goals: [
-      { text: 'Achieve IELTS 7+', done: false },
-      { text: 'Build strong university portfolio', done: false },
-      { text: 'Develop startup MVP (SafiqX)', done: false },
-      { text: 'Improve prompt engineering & AI skills', done: true },
-      { text: 'Establish active trading performance record', done: false },
-    ],
-  },
-  {
-    phase: 'Phase II', timeline: '2027–2028 — Mid-Term', color: '#f5c518',
-    goals: [
-      { text: 'Enter top international university', done: false },
-      { text: 'Launch SafiqX beta platform', done: false },
-      { text: 'Build strong trading capital base', done: false },
-      { text: 'Form advisory and founding team', done: false },
-      { text: 'Secure initial investor interest', done: false },
-    ],
-  },
-  {
-    phase: 'Phase III', timeline: '5–10 Years — Long-Term', color: '#a78bfa',
-    goals: [
-      { text: 'Become CEO of global fintech company', done: false },
-      { text: 'Build multi-billion halal investment ecosystem', done: false },
-      { text: 'Expand SafiqX to global markets', done: false },
-      { text: 'Compete with top-tier financial institutions', done: false },
-      { text: 'Empower millions through ethical finance', done: false },
-    ],
-  },
-]
+import { useLanguage } from '../hooks/useLanguage'
 
 export default function Goals() {
+  const { t } = useLanguage()
   const { ref, inView } = useInView()
+
+  const phases = [
+    {
+      phase: t('goals.phases.p1'), timeline: t('goals.phases.p1t'), color: '#00e5cc',
+      goals: [
+        { text: t('goals.items.ielts'), done: false },
+        { text: t('goals.items.portfolio'), done: false },
+        { text: t('goals.items.mvp'), done: false },
+        { text: t('goals.items.ai'), done: true },
+        { text: t('goals.items.trading'), done: false },
+      ],
+    },
+    {
+      phase: t('goals.phases.p2'), timeline: t('goals.phases.p2t'), color: '#f5c518',
+      goals: [
+        { text: t('goals.items.uni'), done: false },
+        { text: t('goals.items.beta'), done: false },
+        { text: t('goals.items.capital'), done: false },
+        { text: t('goals.items.team'), done: false },
+        { text: t('goals.items.investor'), done: false },
+      ],
+    },
+    {
+      phase: t('goals.phases.p3'), timeline: t('goals.phases.p3t'), color: '#a78bfa',
+      goals: [
+        { text: t('goals.items.ceo'), done: false },
+        { text: t('goals.items.ecosystem'), done: false },
+        { text: t('goals.items.global'), done: false },
+        { text: t('goals.items.compete'), done: false },
+        { text: t('goals.items.empower'), done: false },
+      ],
+    },
+  ]
+
   return (
     <section id="goals" ref={ref} className="py-24 relative"
       style={{ background: 'linear-gradient(180deg, #070f1c 0%, #06101a 100%)' }}>
       <div className="section-divider mb-0" />
       <div className="max-w-7xl mx-auto px-6 pt-6">
         <motion.div initial={{ opacity:0, y:36 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.7 }}>
-          <SectionLabel label="Roadmap" title="Goals & Milestones"
-            subtitle="A structured, phased approach to building a global financial empire — starting today." />
+          <SectionLabel label={t('goals.label')} title={t('goals.title')}
+            subtitle={t('goals.subtitle')} />
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {PHASES.map((ph, i) => (
+          {phases.map((ph, i) => (
             <motion.div key={ph.phase}
               initial={{ opacity:0, y:46 }} animate={inView ? { opacity:1, y:0 } : {}}
               transition={{ duration:0.7, delay:i*0.12 }}

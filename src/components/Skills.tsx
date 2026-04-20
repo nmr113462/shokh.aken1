@@ -3,54 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from
 import { useInView } from '../hooks/useInView'
 import SectionLabel from './SectionLabel'
 import { Briefcase, TrendingUp, Cpu, MessageSquare, ChevronDown, ArrowUpRight } from 'lucide-react'
-
-const GROUPS = [
-  {
-    icon: Briefcase, category: 'Business & Leadership',
-    color: '#00e5cc', level: 85,
-    description: 'Building systems that scale. Every startup begins with a vision — I translate vision into executable strategy.',
-    skills: [
-      { name: 'Startup Building',   detail: 'From concept to MVP — structuring ideas into fundable, scalable ventures.' },
-      { name: 'Strategic Thinking', detail: 'Multi-level planning: short-term execution + long-term market positioning.' },
-      { name: 'Vision Planning',    detail: 'Setting clear north stars, milestones, and KPIs for ambitious companies.' },
-      { name: 'Systems Design',     detail: 'Understanding how businesses, products, and processes interconnect at scale.' },
-    ],
-  },
-  {
-    icon: TrendingUp, category: 'Trading & Finance',
-    color: '#f5c518', level: 78,
-    description: 'Institutional-grade market analysis. I study how banks move price, identify manipulation, and enter with precision.',
-    skills: [
-      { name: 'Smart Money Concepts (SMC)',  detail: 'Tracking institutional order flow, premium/discount zones, and FVGs.' },
-      { name: 'Liquidity & Order Blocks',   detail: 'Identifying where banks place stop hunts and accumulate positions.' },
-      { name: 'Market Structure (BOS, CHoCH)', detail: 'Reading Break of Structure and Change of Character for trend confirmation.' },
-      { name: 'Multi-timeframe Analysis',   detail: 'D1 narrative → H4 confirmation → M15 precision entry model.' },
-      { name: 'Bank Manipulation Strategy', detail: 'Personal edge built on understanding how large players engineer liquidity.' },
-    ],
-  },
-  {
-    icon: Cpu, category: 'Tech & AI',
-    color: '#a78bfa', level: 72,
-    description: 'Leveraging AI as a competitive weapon. Building intelligent workflows to move faster than any team.',
-    skills: [
-      { name: 'Prompt Engineering',            detail: 'Crafting precise instructions to extract maximum value from AI models.' },
-      { name: 'AI-powered Workflows',          detail: 'Automating research, analysis, and content generation pipelines.' },
-      { name: 'Fullstack Understanding',       detail: 'Frontend, backend, database — knowing how every layer connects.' },
-      { name: 'Frontend / Backend / DB',       detail: 'Practical knowledge of modern web architecture for startup building.' },
-    ],
-  },
-  {
-    icon: MessageSquare, category: 'Communication',
-    color: '#fb923c', level: 80,
-    description: 'Language is leverage. I communicate with the precision of a professional and the conviction of a founder.',
-    skills: [
-      { name: 'English — CEFR B2',       detail: 'Actively pursuing IELTS 7+ for top international university entry.' },
-      { name: 'Professional Writing',    detail: 'Business communication, investor briefs, and strategic documentation.' },
-      { name: 'Presentation Skills',     detail: 'Pitching ideas with clarity, confidence, and visual storytelling.' },
-      { name: 'Strategic Storytelling',  detail: 'Shaping narratives that attract investors, partners, and top talent.' },
-    ],
-  },
-]
+import { useLanguage } from '../hooks/useLanguage'
 
 function TiltWrap({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -69,8 +22,57 @@ function TiltWrap({ children }: { children: React.ReactNode }) {
 }
 
 export default function Skills() {
+  const { t } = useLanguage()
   const { ref, inView } = useInView()
   const [active, setActive] = useState<number|null>(null)
+
+  const groups = [
+    {
+      icon: Briefcase, category: t('skills.categories.business'),
+      color: '#00e5cc', level: 85,
+      description: t('skills.descriptions.business'),
+      skills: [
+        { name: 'Startup Building',   detail: t('skills.details.Startup Building') },
+        { name: 'Strategic Thinking', detail: t('skills.details.Strategic Thinking') },
+        { name: 'Vision Planning',    detail: t('skills.details.Vision Planning') },
+        { name: 'Systems Design',     detail: t('skills.details.Systems Design') },
+      ],
+    },
+    {
+      icon: TrendingUp, category: t('skills.categories.trading'),
+      color: '#f5c518', level: 78,
+      description: t('skills.descriptions.trading'),
+      skills: [
+        { name: 'Smart Money Concepts (SMC)',  detail: t('skills.details.Smart Money Concepts (SMC)') },
+        { name: 'Liquidity & Order Blocks',   detail: t('skills.details.Liquidity & Order Blocks') },
+        { name: 'Market Structure (BOS, CHoCH)', detail: t('skills.details.Market Structure (BOS, CHoCH)') },
+        { name: 'Multi-timeframe Analysis',   detail: t('skills.details.Multi-timeframe Analysis') },
+        { name: 'Bank Manipulation Strategy', detail: t('skills.details.Bank Manipulation Strategy') },
+      ],
+    },
+    {
+      icon: Cpu, category: t('skills.categories.tech'),
+      color: '#a78bfa', level: 72,
+      description: t('skills.descriptions.tech'),
+      skills: [
+        { name: 'Prompt Engineering',            detail: t('skills.details.Prompt Engineering') },
+        { name: 'AI-powered Workflows',          detail: t('skills.details.AI-powered Workflows') },
+        { name: 'Fullstack Understanding',       detail: t('skills.details.Fullstack Understanding') },
+        { name: 'Frontend / Backend / DB',       detail: t('skills.details.Frontend / Backend / DB') },
+      ],
+    },
+    {
+      icon: MessageSquare, category: t('skills.categories.comm'),
+      color: '#fb923c', level: 80,
+      description: t('skills.descriptions.comm'),
+      skills: [
+        { name: 'English — CEFR B2',       detail: t('skills.details.English — CEFR B2') },
+        { name: 'Professional Writing',    detail: t('skills.details.Professional Writing') },
+        { name: 'Presentation Skills',     detail: t('skills.details.Presentation Skills') },
+        { name: 'Strategic Storytelling',  detail: t('skills.details.Strategic Storytelling') },
+      ],
+    },
+  ]
 
   return (
     <section id="skills" ref={ref} className="py-24 relative overflow-hidden"
@@ -82,12 +84,12 @@ export default function Skills() {
       <div className="section-divider mb-0" />
       <div className="max-w-7xl mx-auto px-6 pt-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 36 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-          <SectionLabel label="Expertise" title="Skills & Mastery"
-            subtitle="Tap any card to expand. Each skill is a deliberate investment in the future." />
+          <SectionLabel label={t('skills.label')} title={t('skills.title')}
+            subtitle={t('skills.subtitle')} />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
-          {GROUPS.map((g, i) => (
+          {groups.map((g, i) => (
             <motion.div key={g.category}
               initial={{ opacity: 0, y: 46 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.1 }}>
@@ -124,7 +126,7 @@ export default function Skills() {
                     {/* Bar */}
                     <div className="mb-4">
                       <div className="flex justify-between mb-1.5">
-                        <span className="text-[10px] uppercase tracking-widest" style={{ color: 'rgba(175,205,202,0.45)' }}>Proficiency</span>
+                        <span className="text-[10px] uppercase tracking-widest" style={{ color: 'rgba(175,205,202,0.45)' }}>{t('skills.proficiency') || 'Proficiency'}</span>
                         <span className="text-[11px] font-bold font-heading" style={{ color: g.color }}>{g.level}%</span>
                       </div>
                       <div className="h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.05)' }}>
@@ -174,7 +176,7 @@ export default function Skills() {
                           </div>
                           <div className="mt-3 pt-2.5 flex items-center gap-1.5 border-t" style={{ borderColor: `${g.color}15` }}>
                             <ArrowUpRight size={11} style={{ color: g.color }}/>
-                            <span className="text-[10px] font-semibold tracking-widest uppercase font-heading" style={{ color: g.color }}>Active Focus</span>
+                            <span className="text-[10px] font-semibold tracking-widest uppercase font-heading" style={{ color: g.color }}>{t('skills.activeFocus')}</span>
                           </div>
                         </div>
                       </motion.div>
@@ -188,7 +190,7 @@ export default function Skills() {
 
         <motion.p initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ delay: 0.9 }}
           className="text-center mt-5 text-xs" style={{ color: 'rgba(160,195,192,0.33)' }}>
-          Tap any card to explore details ↑
+          {t('skills.tapToExplore')}
         </motion.p>
       </div>
     </section>

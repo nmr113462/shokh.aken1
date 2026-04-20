@@ -2,16 +2,19 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import SectionLabel from './SectionLabel'
 import { Award, BookOpen, Lightbulb, TrendingUp } from 'lucide-react'
-
-const LIST = [
-  { icon:BookOpen,   title:'CEFR B2 English',      sub:'Language Proficiency', desc:'Achieved B2 level in English, actively working toward IELTS 7+ for top international university admission.', color:'#00e5cc' },
-  { icon:TrendingUp, title:'Active SMC Trader',     sub:'Trading Mastery',      desc:'Mastering Smart Money Concepts — deep understanding of bank manipulation, order blocks, and market structure.', color:'#f5c518' },
-  { icon:Lightbulb,  title:'SafiqX Concept Founded',sub:'Startup Development',  desc:'Created the full concept, vision, and infrastructure blueprint for a halal fintech brokerage platform.', color:'#a78bfa' },
-  { icon:Award,      title:'AI & Prompt Engineering',sub:'Tech Skills',         desc:'Self-taught proficiency in AI tools, workflow automation, and prompt engineering for business applications.', color:'#34d399' },
-]
+import { useLanguage } from '../hooks/useLanguage'
 
 export default function Achievements() {
+  const { t } = useLanguage()
   const { ref, inView } = useInView()
+
+  const list = [
+    { icon:BookOpen,   title: t('achievements.items.english'),      sub: t('achievements.items.englishSub'), desc: t('achievements.items.englishDesc'), color:'#00e5cc' },
+    { icon:TrendingUp, title: t('achievements.items.trader'),     sub: t('achievements.items.traderSub'),      desc: t('achievements.items.traderDesc'), color:'#f5c518' },
+    { icon:Lightbulb,  title: t('achievements.items.safiqx'),sub: t('achievements.items.safiqxSub'),  desc: t('achievements.items.safiqxDesc'), color:'#a78bfa' },
+    { icon:Award,      title: t('achievements.items.ai'),sub: t('achievements.items.aiSub'),         desc: t('achievements.items.aiDesc'), color:'#34d399' },
+  ]
+
   return (
     <section id="achievements" ref={ref} className="py-24 relative"
       style={{ background:'linear-gradient(180deg, #06101a 0%, #070f1c 100%)' }}>
@@ -21,12 +24,12 @@ export default function Achievements() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity:0, y:36 }} animate={inView ? { opacity:1, y:0 } : {}} transition={{ duration:0.7 }}>
-          <SectionLabel label="Achievements" title="What I've Earned"
-            subtitle="Real accomplishments at 17 — foundations of something much larger." />
+          <SectionLabel label={t('achievements.label')} title={t('achievements.title')}
+            subtitle={t('achievements.subtitle')} />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {LIST.map((a, i) => (
+          {list.map((a, i) => (
             <motion.div key={a.title}
               initial={{ opacity:0, y:36 }} animate={inView ? { opacity:1, y:0 } : {}}
               transition={{ duration:0.6, delay:i*0.1 }}
@@ -53,7 +56,7 @@ export default function Achievements() {
 
         <motion.p initial={{ opacity:0 }} animate={inView ? { opacity:1 } : {}} transition={{ delay:0.55 }}
           className="text-center mt-7 text-xs" style={{ color:'rgba(150,190,186,0.35)' }}>
-          More achievements being added as the journey continues...
+          {t('achievements.more')}
         </motion.p>
       </div>
     </section>
