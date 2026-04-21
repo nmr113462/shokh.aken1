@@ -28,32 +28,32 @@ function LinkedInIcon({ size, style }: { size: number; style?: React.CSSProperti
 }
 
 /* ── Contact channel config ─────────────────────────────── */
-const CHANNELS = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'sturdaliyev123@gmail.com',
-    href: 'mailto:sturdaliyev123@gmail.com',
-    color: '#00e5cc',
-    action: 'Open Email',
-  },
-  {
-    icon: TelegramIcon,
-    label: 'Telegram',
-    value: '@shokh_ake_xfx',
-    href: 'https://t.me/shokh_ake_xfx',
-    color: '#38bdf8',
-    action: 'Open Telegram',
-  },
-  {
-    icon: LinkedInIcon,
-    label: 'LinkedIn',
-    value: 'shokh.ake',
-    href: 'https://www.linkedin.com/in/shokh.ake',
-    color: '#60a5fa',
-    action: 'Open LinkedIn',
-  },
-]
+  const channels = [
+    {
+      icon: Mail,
+      label: t('contact.email'),
+      value: 'sturdaliyev123@gmail.com',
+      href: 'mailto:sturdaliyev123@gmail.com',
+      color: '#00e5cc',
+      action: t('contact.open') + ' ' + t('contact.email'),
+    },
+    {
+      icon: TelegramIcon,
+      label: t('contact.telegram'),
+      value: '@shokh_ake_xfx',
+      href: 'https://t.me/shokh_ake_xfx',
+      color: '#38bdf8',
+      action: t('contact.open') + ' ' + t('contact.telegram'),
+    },
+    {
+      icon: LinkedInIcon,
+      label: t('contact.linkedin'),
+      value: 'shokh.ake',
+      href: 'https://www.linkedin.com/in/shokh.ake',
+      color: '#60a5fa',
+      action: t('contact.open') + ' ' + t('contact.linkedin'),
+    },
+  ]
 
 /* ── Types ─────────────────────────────────────────────── */
 type Status = 'idle' | 'loading' | 'success' | 'error'
